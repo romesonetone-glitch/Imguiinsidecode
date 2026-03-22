@@ -1024,11 +1024,11 @@ function ImGui:ContainerClass(Frame: Frame, Class, Window)
 		end
 
 		function Config:SetValue(NewKey: Enum.KeyCode)
-			if not NewKey then
-				ValueText.Text = "Not set"
-				Config.Value = nil
-				return
-			end
+    if not NewKey or typeof(NewKey) ~= "EnumItem" then
+        ValueText.Text = "Not set"
+        Config.Value = nil
+        return
+    end
 
 			if NewKey == TobeNullKey then
 				ValueText.Text = "Not set"
